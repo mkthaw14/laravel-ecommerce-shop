@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\MOdels\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashBoardController extends Controller
 {
@@ -15,7 +16,7 @@ class DashBoardController extends Controller
         $products = Product::all();
         $orders = Order::all();
         $numberOfOrderAmount = Order::sum("total_amount");
-
-        return view("backend.dashboard", compact("categories", "products", "orders", "numberOfOrderAmount"));
+        //return view("backend.dashboard", compact("categories", "products", "orders", "numberOfOrderAmount"));
+        return redirect()->route("category.index");
     }
 }

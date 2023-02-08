@@ -45,10 +45,6 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="{{route("dashboard")}}">
-                                <div class="sb-nav-link-icon"></div>
-                                DashBoard
-                            </a>
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{route("category.index")}}">
                                 <div class="sb-nav-link-icon"></div>
