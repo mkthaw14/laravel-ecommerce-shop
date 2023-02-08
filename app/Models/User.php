@@ -56,4 +56,12 @@ class User extends Authenticatable
 
         return false;
     }
+
+    function isAdmin()
+    {
+        if($this->roles()->where("name", "admin")->first())
+            return true;
+
+        return false;
+    }
 }

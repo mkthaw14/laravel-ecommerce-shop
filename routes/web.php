@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
@@ -29,6 +30,7 @@ Route::middleware("auth")->group(function() {
 });
 
 Route::middleware("auth", "role:admin")->group(function() {
+    Route::get("/dashboard", [DashBoardController::class, "index"])->name("dashboard");
     Route::get("/category/get-category", [CategoryController::class, "getCategory"])->name("category.get-category");
     Route::resource("category", CategoryController::class);
 

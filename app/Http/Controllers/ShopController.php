@@ -18,6 +18,7 @@ class ShopController extends Controller
         $products = Product::all();
         $categories = Category::all();
         return view("frontend.index", compact("products", "categories"));
+
     }
 
     public function cart()

@@ -53,6 +53,7 @@
     const siteName = "http://localhost:8000";
 
     $(document).ready(function() {
+
         $( ".category-link").on("click", function(e) {
             e.preventDefault();
 
@@ -60,20 +61,21 @@
             $(".category-link").removeClass("active");
             $(this).addClass("active");
 
-            $.get(`{{route("shop.get-product-by-category")}}`, {category_id:$(this).data("id")}, function(data) {
-                console.log(data);
-                updateProductSection(data);
+            $.get(`{{route("shop.get-product-by-category")}}`, {category_id:$(this).data("id")}, function(res) {
+                console.log(res);
+                updateProductSection(res.products);
             });
         });
-
 
     });  
 
 
-    function updateProductSection(data)
+    function updateProductSection(items)
     {
         let products = '';
-        data.products.forEach(function(item, index) {
+
+        console.log(items);
+        items.forEach(function(item, index) {
 
             products += `
             <div class="col mb-5">
@@ -101,6 +103,28 @@
 
 
         $("#product-section").html(products);
+    }
+
+    function showPaginationLinks(previousLink, nextLink)
+    {
+        if(previousLink == null)
+            previousLink = "";
+        if(nextLink == null)
+            nextLink = "";
+
+        //console.log(item.data);
+        let links = `
+            <a href="${previousLink}" class="p-link relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                « Previous
+            </a>
+                    
+            <a href="${nextLink}" class="p-link relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                Next »
+            </a>
+        `;
+
+
+        $("#pagination-links").html(links);
     }
  </script>   
 @endsection

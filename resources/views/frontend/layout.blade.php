@@ -25,6 +25,9 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route("shop")}}">Home</a></li>
 
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route("dashboard")}}">DashBoard</a></li>
+                        @endif
                     </ul>
                     <div class="d-flex">
                         <a class="btn btn-outline-dark" href="{{route('shop.cart')}}">
